@@ -1,0 +1,27 @@
+Как создать группу
+
+Test plan (ПКМ)-add-threads-threads group
+
+Параметры:
+-number of threads - сколько пользователей будут слать что-то
+
+-ramp-up period - за сколько будут подняты эти пользователи
+
+-loop Count -infinite(checkbox) - эти пользователи будут слать что-то бесконечно, пока мы их не остановим (если количество, то сколько раз это количество пользователей отправит запросов)
+
+
+ДОБАВЛЯЕМ ЗАПРОС:
+ПКМ Thread Group-add-sampler-HTTP Requestpost
+
+НАСТРОИТЬ ОТОБРАЖЕНИЕ РАБОТЫ
+ПКМ Thread Group-add-listener-view results tree
+ПКМ Thread Group-add-listener-summary report
+ПКМ Thread Group-add-listener-view results in table
+
+Тест на определение когда сервак начинает тупить:
+5 пользователей вечно шлют запросы
+2 сек
+
+
+
+Plugin STEPPING THREAD GROUP
