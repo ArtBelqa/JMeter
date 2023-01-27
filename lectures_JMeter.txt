@@ -32,7 +32,7 @@ Plugin STEPPING THREAD GROUP
 Шапочка над запросами
 1.ПКМ Thread Group-add-config Element-HTTP Request 
 Defaults
-2. Прописываем HTTP, IP, Port
+2. Прописываем HTTP, IP (162.55.220.72 / 5.75.203.123), Port
 3. Test plan (ПКМ)-add-threads-threads group
 4. ПКМ Thread Group-add-sampler-HTTP Requestpost
 5. HTTP Request - Path - /login метод - Post
