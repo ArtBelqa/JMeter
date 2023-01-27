@@ -25,3 +25,37 @@ Test plan (ПКМ)-add-threads-threads group
 
 
 Plugin STEPPING THREAD GROUP
+
+-----------------------------------------------------
+КАК Правильно делать нагрузочные тесты
+
+Шапочка над запросами
+1.ПКМ Thread Group-add-config Element-HTTP Request 
+Defaults
+2. Прописываем HTTP, IP, Port
+3. Test plan (ПКМ)-add-threads-threads group
+4. ПКМ Thread Group-add-sampler-HTTP Requestpost
+5. HTTP Request - Path - /login метод - Post
+6. добавить параметров для запроса 
+7.НАСТРОИТЬ ОТОБРАЖЕНИЕ РАБОТЫ ПКМ Thread Group-add-listener-view results tree
+
+8.отправить запрос и получить ответ 
+
+Нужно теперь забрать токен и ответа
+9.ПКМ Http Request-add-Post Processor-JSON Extractor
+
+10.Натсраиваем экстрактор. Name (token), path ($.token), match (1)
+
+11. передаем значение которое забрали из ответа в Thread Group.ПКМ Thread Group-add-Assertions-BeanShell Assertion
+12. внутрь BeanShell Assertion пишем скрипт ${__setProperty(token,${token})}
+13.создаем новую THREAD GROUP(new_data).
+ПКМ Thread Group(new_data) -add-sampler-HTTP Request(new_data)  post
+
+14.ПКМ Thread Group(new_data) -add-Pre Processors-BeanShell Preprocessor (перемещаем его выше всех запросов в этом thread) 
+15. В BeanShell Preprocessor вставляем скрипт 
+string auth_token = progs.get("token");
+vars.put("token", auth_token)
+
+16. внести в запрос New_data POST, Path /new_data. Также 4 параметра добавить
+auth_token - ${token}
+17. НАСТРОИТЬ ОТОБРАЖЕНИЕ РАБОТЫ ПКМ Thread Group-add-listener-view results tree
