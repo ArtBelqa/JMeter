@@ -59,3 +59,11 @@ vars.put("token", auth_token)
 16. внести в запрос New_data POST, Path /new_data. Также 4 параметра добавить
 auth_token - ${token}
 17. НАСТРОИТЬ ОТОБРАЖЕНИЕ РАБОТЫ ПКМ Thread Group-add-listener-view results tree
+
+----------------------------------
+Sniffer
+
+Подкдлючаем модули
+Test plan (ПКМ)-add-non-testElements-HTTP Script Recorder 
+Test plan (ПКМ)-add-test Fragmet-test Fragment
+test Fragment-add-logic controller-recording controller 
